@@ -2,6 +2,10 @@
 
 Have Emacs set environment variables defined in a project's .envrc.
 
+* Deprecation Notice
+
+The newer [[https://github.com/wbolster/emacs-direnv][emacs-direnv]] project takes a slightly different approach, which solves some of the drawbacks of this solution. I encourage you to try it out.
+
 * Motivation
 
 When working at the terminal, I use [[http://direnv.net/][direnv]] to export environment
