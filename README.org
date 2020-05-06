@@ -38,23 +38,23 @@ This package is available on MELPA as *projectile-direnv*
 
 * Usage
 ** Simple
-The easiest way to use this package is to invoke
-*projectile-direnv-export-variables* from a hook:
+The easiest way to use this package is to enable global mode
+*projectile-direnv-global-mode*
 
 #+begin_src lisp
 
-(add-hook 'projectile-mode-hook 'projectile-direnv-export-variables)
+(projectile-direnv-global-mode t)
 
 #+end_src
 
-** Buffer-Local
+** DONE Buffer-Local
 The buffer-local way to use this package is to set projectile-direnv-make-local
-to non-nil and invoke from same hook:
+to non-nil and enable global mode:
 
 #+begin_src lisp
 
 (setq projectile-direnv-make-local t)
-(add-hook 'projectile-mode-hook 'projectile-direnv-export-variables)
+(projectile-direnv-global-mode t)
 
 #+end_src
 

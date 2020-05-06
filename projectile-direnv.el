@@ -117,5 +117,20 @@ environment variables for any defined exports"
   (when (projectile-project-p)
     (projectile-direnv-export-variable-from-dir (projectile-project-root))))
 
+(define-minor-mode projectile-direnv-mode
+    "Projectile direnv minor mode"
+    ;; If init-value is not set to t, this mode does not get enabled in
+    ;; `fundamental-mode' buffers even after doing \"(global-my-mode 1)\".
+    ;; More info: http://emacs.stackexchange.com/q/16693/115
+    :init-value t
+   )
+
+;; global mode is here to replace hook on `projectile-mode-hook'
+;; see https://github.com/bbatsov/projectile/commit/6986e435e64e2f4ee43bf8093c11e1da5fb266fa
+;;;###autoload
+(define-globalized-minor-mode projectile-direnv-global-mode
+  projectile-direnv-mode
+  projectile-direnv-export-variables)
+
 (provide 'projectile-direnv)
 ;;; projectile-direnv.el ends here
