@@ -14,10 +14,10 @@ write. direnv automatically exports the variables to the environment
 when you *cd* into a directory containing a *.envrc* file.
 
 When launching a GUI instance of Emacs (not from the terminal), direnv
-never gets the chance to export your environment variables, however. 
+never gets the chance to export your environment variables, however.
 
 This package contains a command *projectile-direnv-export-variables*
-which will look for a .envrc file in the projectile-project-root. 
+which will look for a .envrc file in the projectile-project-root.
 
 It will then parse the .envrc file for exports and call *setenv* in
 the Emacs environment. This is useful, for instance, when launching
@@ -28,7 +28,7 @@ these variables.
 
 This package is available on MELPA as *projectile-direnv*
 
-[[https://melpa.org/#/projectile-direnv][file:https://melpa.org/packages/projectile-direnv-badge.svg]] 
+[[https://melpa.org/#/projectile-direnv][file:https://melpa.org/packages/projectile-direnv-badge.svg]]
 
 * Dependencies
 
@@ -37,12 +37,23 @@ This package is available on MELPA as *projectile-direnv*
 - [[https://github.com/bbatsov/projectile][projectile]]
 
 * Usage
-
+** Simple
 The easiest way to use this package is to invoke
 *projectile-direnv-export-variables* from a hook:
 
 #+begin_src lisp
 
+(add-hook 'projectile-mode-hook 'projectile-direnv-export-variables)
+
+#+end_src
+
+** Buffer-Local
+The buffer-local way to use this package is to set projectile-direnv-make-local
+to non-nil and invoke from same hook:
+
+#+begin_src lisp
+
+(setq projectile-direnv-make-local t)
 (add-hook 'projectile-mode-hook 'projectile-direnv-export-variables)
 
 #+end_src
@@ -54,12 +65,13 @@ at a time. This is because Emacs' environment is a global one, and
 projectile mode is per-buffer. It is easily conceivable to visit a
 file in one project and load envvars whose names clash with those in
 another project. This will cause a last-project-wins scenario that
-could lead to confusion and frustrated debugging. 
+could lead to confusion and frustrated debugging.
 
 There are two ways to address this concern.
 
-1. Explicitly invoke the command (instead of using a hook)
-2. Name your environment variables uniquely with a project prefix
+1) Explicitly invoke the command (instead of using a hook)
+2) Name your environment variables uniquely with a project prefix
+3) Set projectile-direnv-make-local to non-nil to have buffer-local environment
 
 * Limitations / Known Issues
 
